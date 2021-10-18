@@ -22,6 +22,7 @@ import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
 import { JSONSchema } from '@backstage/catalog-model';
 import { Observable } from '@backstage/types';
+import { Permission } from '@backstage/permission-common';
 import { default as React_2 } from 'react';
 import { ReactNode } from 'react';
 import { RouteRef } from '@backstage/core-plugin-api';
@@ -247,6 +248,14 @@ export const ScaffolderPage: ({
       }[]
     | undefined;
 }) => JSX.Element;
+
+// Warning: (ae-missing-release-tag) "ScaffolderPermission" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export const ScaffolderPermission: Record<'ROUTES', Permission> & {
+  get: (key: 'ROUTES') => Permission;
+  includes: (permission: Permission) => boolean;
+};
 
 // Warning: (ae-missing-release-tag) "scaffolderPlugin" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
