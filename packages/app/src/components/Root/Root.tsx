@@ -94,7 +94,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
       <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
       <SidebarItem icon={LayersIcon} to="explore" text="Explore" />
-      <WithPermission permission={ScaffolderPermission.ROUTES}>
+      <WithPermission permission={ScaffolderPermission}>
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
       </WithPermission>
       {/* End global nav */}

@@ -70,7 +70,7 @@ export const Router = ({ TemplateCardComponent, groups }: RouterProps) => {
     <Routes>
       <PermissionedRoute
         path="/"
-        permission={ScaffolderPermission.ROUTES}
+        permission={ScaffolderPermission}
         element={
           <ScaffolderPage
             TemplateCardComponent={TemplateCardComponent}

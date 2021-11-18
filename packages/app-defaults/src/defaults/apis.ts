@@ -36,7 +36,6 @@ import {
   AtlassianAuth,
   createFetchApi,
   FetchMiddlewares,
-  IdentityPermissionApi,
 } from '@backstage/core-app-api';
 
 import {
@@ -46,7 +45,6 @@ import {
   errorApiRef,
   discoveryApiRef,
   fetchApiRef,
-  identityApiRef,
   oauthRequestApiRef,
   googleAuthApiRef,
   githubAuthApiRef,
@@ -62,7 +60,6 @@ import {
   oidcAuthApiRef,
   bitbucketAuthApiRef,
   atlassianAuthApiRef,
-  permissionApiRef,
   identityApiRef,
 } from '@backstage/core-plugin-api';
 import {
