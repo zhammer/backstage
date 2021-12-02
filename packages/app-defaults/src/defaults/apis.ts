@@ -67,6 +67,11 @@ import {
   IdentityPermissionApi,
 } from '@backstage/plugin-permission-react';
 
+import {
+  IdentityPermissionApi,
+  permissionApiRef,
+} from '@backstage/plugin-permission-react';
+
 export const apis = [
   createApiFactory({
     api: discoveryApiRef,
