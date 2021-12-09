@@ -64,10 +64,17 @@ export type FiltersState = {
 //
 // @public (undocumented)
 export const HomePageSearchBar: ({
+  className,
   placeholder,
 }: {
+  className?: string | undefined;
   placeholder?: string | undefined;
 }) => JSX.Element;
+
+// Warning: (ae-missing-release-tag) "rootRouteRef" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export const rootRouteRef: RouteRef<undefined>;
 
 // Warning: (ae-missing-release-tag) "SearchPage" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
