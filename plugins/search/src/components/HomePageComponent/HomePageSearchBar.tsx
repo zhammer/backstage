@@ -29,10 +29,11 @@ const useStyles = makeStyles({
 });
 
 type Props = {
+  className?: string;
   placeholder?: string;
 };
 
-export const HomePageSearchBar = ({ placeholder }: Props) => {
+export const HomePageSearchBar = ({ className, placeholder }: Props) => {
   const [query, setQuery] = React.useState('');
   const handleSearch = useNavigateToQuery();
   const classes = useStyles();
@@ -53,7 +54,7 @@ export const HomePageSearchBar = ({ placeholder }: Props) => {
       onSubmit={handleSubmit}
       onChange={handleChange}
       value={query}
-      className={classes.searchBar}
+      className={className ?? classes.searchBar}
       placeholder={placeholder}
     />
   );
