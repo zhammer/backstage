@@ -100,7 +100,7 @@ export interface PermissionPolicy {
   // (undocumented)
   handle(
     request: PolicyAuthorizeRequest,
-    user?: BackstageUserIdentity,
+    user?: BackstageIdentityResponse,
   ): Promise<PolicyDecision>;
 }
 
