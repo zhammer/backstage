@@ -21,6 +21,8 @@ import { TokenManager } from './types';
 import { Logger } from 'winston';
 
 class NoopTokenManager implements TokenManager {
+  public readonly isSecure: boolean = false;
+
   async getToken() {
     return { token: '' };
   }
@@ -37,6 +39,7 @@ class NoopTokenManager implements TokenManager {
 export class ServerTokenManager implements TokenManager {
   private readonly verificationKeys: JWKS.KeyStore;
   private readonly signingKey: JWK.Key;
+  public readonly isSecure: boolean;
 
   static noop(): TokenManager {
     return new NoopTokenManager();
@@ -47,7 +50,10 @@ export class ServerTokenManager implements TokenManager {
 
     const keys = config.getOptionalConfigArray('backend.auth.keys');
     if (keys?.length) {
-      return new ServerTokenManager(keys.map(key => key.getString('secret')));
+      return new ServerTokenManager(
+        keys.map(key => key.getString('secret')),
+        true,
+      );
     }
     if (process.env.NODE_ENV !== 'development') {
       throw new Error(
@@ -63,10 +69,10 @@ export class ServerTokenManager implements TokenManager {
     logger.warn(
       'Generated a secret for backend-to-backend authentication: DEVELOPMENT USE ONLY.',
     );
-    return new ServerTokenManager([generatedDevOnlyKey.k]);
+    return new ServerTokenManager([generatedDevOnlyKey.k], false);
   }
 
-  private constructor(secrets: string[]) {
+  private constructor(secrets: string[], isSecure: boolean) {
     if (!secrets.length) {
       throw new Error(
         'No secrets provided when constructing ServerTokenManager',
@@ -77,6 +83,7 @@ export class ServerTokenManager implements TokenManager {
       secrets.map(k => JWK.asKey({ kty: 'oct', k })),
     );
     this.signingKey = this.verificationKeys.all()[0];
+    this.isSecure = isSecure;
   }
 
   async getToken(): Promise<{ token: string }> {

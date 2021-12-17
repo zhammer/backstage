@@ -20,6 +20,10 @@
  * @public
  */
 export interface TokenManager {
+  /**
+   * Denotes whether this token manager was initialized with a secure secret from config.
+   */
+  isSecure: boolean;
   getToken: () => Promise<{ token: string }>;
   authenticate: (token: string) => Promise<void>;
 }
