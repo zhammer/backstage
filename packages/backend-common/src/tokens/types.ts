@@ -21,7 +21,9 @@
  */
 export interface TokenManager {
   /**
-   * Denotes whether this token manager was initialized with a secure secret from config.
+   * This property should be true when the token manager is expected to only
+   * authenticate tokens created by itself, or an equivalently-constructed
+   * instance.
    */
   isSecure: boolean;
   getToken: () => Promise<{ token: string }>;

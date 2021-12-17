@@ -39,7 +39,7 @@ class NoopTokenManager implements TokenManager {
 export class ServerTokenManager implements TokenManager {
   private readonly verificationKeys: JWKS.KeyStore;
   private readonly signingKey: JWK.Key;
-  public readonly isSecure: boolean;
+  public readonly isSecure: boolean = true;
 
   static noop(): TokenManager {
     return new NoopTokenManager();
@@ -50,10 +50,7 @@ export class ServerTokenManager implements TokenManager {
 
     const keys = config.getOptionalConfigArray('backend.auth.keys');
     if (keys?.length) {
-      return new ServerTokenManager(
-        keys.map(key => key.getString('secret')),
-        true,
-      );
+      return new ServerTokenManager(keys.map(key => key.getString('secret')));
     }
     if (process.env.NODE_ENV !== 'development') {
       throw new Error(
@@ -69,10 +66,10 @@ export class ServerTokenManager implements TokenManager {
     logger.warn(
       'Generated a secret for backend-to-backend authentication: DEVELOPMENT USE ONLY.',
     );
-    return new ServerTokenManager([generatedDevOnlyKey.k], false);
+    return new ServerTokenManager([generatedDevOnlyKey.k]);
   }
 
-  private constructor(secrets: string[], isSecure: boolean) {
+  private constructor(secrets: string[]) {
     if (!secrets.length) {
       throw new Error(
         'No secrets provided when constructing ServerTokenManager',
@@ -83,7 +80,6 @@ export class ServerTokenManager implements TokenManager {
       secrets.map(k => JWK.asKey({ kty: 'oct', k })),
     );
     this.signingKey = this.verificationKeys.all()[0];
-    this.isSecure = isSecure;
   }
 
   async getToken(): Promise<{ token: string }> {
