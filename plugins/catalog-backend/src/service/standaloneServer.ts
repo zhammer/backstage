@@ -17,13 +17,14 @@
 import {
   createServiceBuilder,
   loadBackendConfig,
+  ServerTokenManager,
   SingleHostDiscovery,
   UrlReaders,
   useHotMemoize,
 } from '@backstage/backend-common';
 import { Server } from 'http';
 import { Logger } from 'winston';
-import { PermissionClient } from '@backstage/plugin-permission-common';
+import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DatabaseManager } from '../legacy/database';
 import { CatalogBuilder } from '../legacy/service/CatalogBuilder';
 import { createRouter } from '../legacy/service';
@@ -44,10 +45,11 @@ export async function startStandaloneServer(
   const db = useHotMemoize(module, () =>
     DatabaseManager.createInMemoryDatabaseConnection(),
   );
-  const discoveryApi = SingleHostDiscovery.fromConfig(config);
-  const permissions = new PermissionClient({
-    discoveryApi,
-    configApi: config,
+  const discovery = SingleHostDiscovery.fromConfig(config);
+  const tokenManager = ServerTokenManager.fromConfig(config, { logger });
+  const permissions = ServerPermissionClient.fromConfig(config, {
+    discovery,
+    tokenManager,
   });
 
   logger.debug('Creating application...');

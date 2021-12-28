@@ -29,7 +29,7 @@ import {
   conditions as catalogConditions,
   createPolicyDecision as createCatalogPolicyDecision,
 } from '@backstage/plugin-catalog-backend';
-import { RESOURCE_TYPE_CATALOG_ENTITY } from '@backstage/catalog-model';
+import { RESOURCE_TYPE_CATALOG_ENTITY } from '@backstage/plugin-catalog-common';
 import { isComponentType as isComponentTypeRule } from './rules';
 
 const { isEntityOwner, isEntityKind } = catalogConditions;

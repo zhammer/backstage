@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { RESOURCE_TYPE_CATALOG_ENTITY } from '@backstage/catalog-model';
+import { RESOURCE_TYPE_CATALOG_ENTITY } from '@backstage/plugin-catalog-common';
 import { createConditionExports } from '@backstage/plugin-permission-node';
 import { hasAnnotation, isEntityKind, isEntityOwner } from './rules';
 

@@ -29,7 +29,7 @@ import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
 import { GraphiQLIcon } from '@backstage/plugin-graphiql';
 import { usePermission } from '@backstage/plugin-permission-react';
-import { ScaffolderPermission } from '@backstage/plugin-scaffolder';
+import { scaffolderRoutePermission } from '@backstage/plugin-scaffolder';
 import { Settings as SidebarSettings } from '@backstage/plugin-user-settings';
 import {
   SidebarSearchModal,
@@ -82,7 +82,7 @@ const SidebarLogo = () => {
 };
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
-  const { allowed } = usePermission(ScaffolderPermission);
+  const { allowed } = usePermission(scaffolderRoutePermission);
   return (
     <SidebarPage>
       <Sidebar>

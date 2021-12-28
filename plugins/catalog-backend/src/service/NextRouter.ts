@@ -20,9 +20,9 @@ import {
   Entity,
   locationSpecSchema,
   parseEntityRef,
-  RESOURCE_TYPE_CATALOG_ENTITY,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
+import { RESOURCE_TYPE_CATALOG_ENTITY } from '@backstage/plugin-catalog-common';
 import { Config } from '@backstage/config';
 import { NotFoundError } from '@backstage/errors';
 import { IdentityClient } from '@backstage/plugin-auth-backend';

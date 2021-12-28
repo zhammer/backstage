@@ -14,19 +14,14 @@
  * limitations under the License.
  */
 
-import {
-  catalogEntityReadPermission,
-  Entity,
-  stringifyEntityRef,
-} from '@backstage/catalog-model';
+import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
+import { catalogEntityReadPermission } from '@backstage/plugin-catalog-common';
 import { InputError, NotFoundError } from '@backstage/errors';
-import {
-  AuthorizeResult,
-  PermissionClient,
-} from '@backstage/plugin-permission-common';
+import { AuthorizeResult } from '@backstage/plugin-permission-common';
 import {
   ConditionTransformer,
   createConditionTransformer,
+  ServerPermissionClient,
 } from '@backstage/plugin-permission-node';
 import { Knex } from 'knex';
 import {
@@ -168,7 +163,7 @@ export class NextEntitiesCatalog implements EntitiesCatalog {
 
   constructor(
     private readonly database: Knex,
-    private readonly permissionApi: PermissionClient,
+    private readonly permissionApi: ServerPermissionClient,
     permissionRules: CatalogPermissionRule[],
   ) {
     this.transformConditions = createConditionTransformer(permissionRules);

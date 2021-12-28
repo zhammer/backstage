@@ -29,7 +29,7 @@ import MoreVert from '@material-ui/icons/MoreVert';
 import React, { useState } from 'react';
 import { IconComponent } from '@backstage/core-plugin-api';
 import { useEntityPermission } from '@backstage/plugin-catalog-react';
-import { catalogEntityUnregisterPermission } from '@backstage/catalog-model';
+import { catalogEntityDeletePermission } from '@backstage/plugin-catalog-common';
 
 // TODO(freben): It should probably instead be the case that Header sets the theme text color to white inside itself unconditionally instead
 const useStyles = makeStyles({
@@ -92,7 +92,7 @@ export const EntityContextMenu = ({
   ];
 
   const unregisterPermission = useEntityPermission(
-    catalogEntityUnregisterPermission,
+    catalogEntityDeletePermission,
   );
 
   const disableUnregister =

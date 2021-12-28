@@ -26,4 +26,3 @@ export * from './kinds';
 export * from './location';
 export type { EntityName, EntityRef, JSONSchema } from './types';
 export * from './validation';
-export * from './permissions';
