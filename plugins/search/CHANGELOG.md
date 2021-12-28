@@ -1,5 +1,13 @@
 # @backstage/plugin-search
 
+## 0.5.3
+
+### Patch Changes
+
+- 6d8e3a9651: Internal cleanup of the exports structure
+- Updated dependencies
+  - @backstage/plugin-catalog-react@0.6.9
+
 ## 0.5.2
 
 ### Patch Changes

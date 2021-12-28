@@ -1,5 +1,17 @@
 # @backstage/plugin-auth-backend
 
+## 0.5.3
+
+### Patch Changes
+
+- f0f81f6cc7: Replaces the usage of `got` with `node-fetch` in the `getUserPhoto` method of the Microsoft provider
+- 2f26120a36: Update `auth0` and `onelogin` providers to allow for `authHandler` and `signIn.resolver` configuration.
+- a9abafa9df: Fixed bug on refresh token on Okta provider, now it gets the refresh token and it sends it into providerInfo
+- eb48e78886: Enforce cookie SSL protection when in production for auth-backend sessions
+- Updated dependencies
+  - @backstage/test-utils@0.2.1
+  - @backstage/backend-common@0.10.1
+
 ## 0.5.2
 
 ### Patch Changes
